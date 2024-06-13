@@ -38,6 +38,7 @@ import {
 import { ZERO_ADDRESS } from "./constants";
 import { getTestnetReserveAddressFromSymbol, POOL_DATA_PROVIDER } from ".";
 import { ENABLE_REWARDS } from "./env";
+import MerlinConfig from "../markets/merlin";
 
 declare var hre: HardhatRuntimeEnvironment;
 
@@ -54,7 +55,8 @@ export enum ConfigNames {
   Ethereum = "Ethereum",
   Base = "Base",
   baseGoerli = "base-goerli",
-  Molten = "Molten"
+  Molten = "Molten",
+  Merlin = "Merlin"
 }
 
 export const getParamPerNetwork = <T>(
@@ -120,6 +122,8 @@ export const loadPoolConfig = (configName: ConfigNames): PoolConfiguration => {
       return ArbitrumConfig;
     case ConfigNames.Molten:
       return MoltenConfig;
+    case ConfigNames.Merlin:
+      return MerlinConfig;
     case ConfigNames.Ethereum:
       return EthereumV3Config;
     case ConfigNames.Base:

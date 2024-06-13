@@ -13,6 +13,7 @@ import {
   eOptimismNetwork,
   eBaseNetwork,
   eMoltenNetwork,
+  eMerlinNetwork,
 } from "./types";
 
 require("dotenv").config();
@@ -28,6 +29,7 @@ export const FORK_BLOCK_NUMBER = process.env.FORK_BLOCK_NUMBER
   : 0;
 const MNEMONIC_PATH = "m/44'/60'/0'/0";
 const MNEMONIC = process.env.MNEMONIC || "";
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 export const getAlchemyKey = (net: eNetwork) => {
   switch (net) {
@@ -99,7 +101,8 @@ export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
   [eBaseNetwork.base]: `https://base-mainnet.g.alchemy.com/v2/${getAlchemyKey(
     eBaseNetwork.base
   )}`,
-  [eMoltenNetwork.main]: 'http://localhost:8545'
+  [eMoltenNetwork.main]: "http://localhost:8545",
+  [eMerlinNetwork.testnet]: "https://testnet-rpc.merlinchain.io",
 };
 
 export const LIVE_NETWORKS: iParamsPerNetwork<boolean> = {
@@ -111,7 +114,8 @@ export const LIVE_NETWORKS: iParamsPerNetwork<boolean> = {
   [eFantomNetwork.main]: true,
   [eOptimismNetwork.main]: true,
   [eBaseNetwork.base]: true,
-  [eMoltenNetwork.main]: true
+  [eMoltenNetwork.main]: true,
+  [eMerlinNetwork.testnet]: true,
 };
 
 const GAS_PRICE_PER_NET: iParamsPerNetwork<string | number> = {
@@ -146,22 +150,32 @@ export const loadTasks = (taskFolders: string[]): void =>
 
 export const getCommonNetworkConfig = (
   networkName: eNetwork,
-  chainId?: number
-) => ({
-  url: NETWORKS_RPC_URL[networkName] || "",
-  blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
-  chainId,
-  gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
-  ...((!!MNEMONICS[networkName] || !!MNEMONIC) && {
-    accounts: {
-      mnemonic: MNEMONICS[networkName] || MNEMONIC,
-      path: MNEMONIC_PATH,
-      initialIndex: 0,
-      count: 10,
-    },
-  }),
-  live: LIVE_NETWORKS[networkName] || false,
-});
+  chainId?: number,
+  pk: boolean = false
+) => {
+  const network = {
+    url: NETWORKS_RPC_URL[networkName] || "",
+    blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
+    chainId,
+    gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
+    ...((!!MNEMONICS[networkName] || MNEMONIC) &&
+      !pk && {
+        accounts: {
+          mnemonic: MNEMONICS[networkName],
+          path: MNEMONIC_PATH,
+          initialIndex: 0,
+          count: 10,
+        },
+      }),
+    ...(!!PRIVATE_KEY &&
+      pk && {
+        accounts: [PRIVATE_KEY],
+      }),
+    live: LIVE_NETWORKS[networkName] || false,
+  };
+  console.log(network)
+  return network;
+};
 
 const MNEMONICS: iParamsPerNetwork<string> = {
   [eAvalancheNetwork.fuji]: process.env.FUJI_MNEMONIC,
@@ -170,7 +184,8 @@ const MNEMONICS: iParamsPerNetwork<string> = {
   [eArbitrumNetwork.arbitrumTestnet]: process.env.ARBITRUM_MNEMONIC,
   [ePolygonNetwork.mumbai]: process.env.POLYGON_MUMBAI_MNEMONIC,
   [ePolygonNetwork.polygon]: process.env.POLYGON_MNEMONIC,
-  [eMoltenNetwork.main]: 'test test test test test test test test test test test junk'
+  [eMoltenNetwork.main]:
+    "test test test test test test test test test test test junk",
 };
 
 export const hardhatNetworkSettings = {

@@ -19,7 +19,8 @@ export type eNetwork =
   | eOptimismNetwork
   | eTenderlyNetwork
   | eBaseNetwork
-  | eMoltenNetwork;
+  | eMoltenNetwork
+  | eMerlinNetwork;
 
 type eTenderlyNetwork = "tenderly";
 
@@ -54,6 +55,11 @@ export enum eEthereumNetwork {
 export enum eBaseNetwork {
   base = "base",
   baseGoerli = "base-goerli",
+}
+
+export enum eMerlinNetwork {
+  main="merlin",
+  testnet="merlin_testnet"
 }
 
 export enum ePolygonNetwork {
@@ -446,6 +452,8 @@ export interface iMoltenParamsPerNetwork<T> {
   [eMoltenNetwork.main]: T;
 }
 
+
+
 export interface iParamsPerNetworkAll<T>
   extends iEthereumParamsPerNetwork<T>,
     iPolygonParamsPerNetwork<T>,
@@ -456,6 +464,11 @@ export interface iEthereumParamsPerNetwork<T> {
   [eEthereumNetwork.ropsten]: T;
   [eEthereumNetwork.main]: T;
   [eEthereumNetwork.tenderly]: T;
+}
+
+export interface iMerlinParamsPerNetwork<T> {
+  [eMerlinNetwork.main]: T;
+  [eMerlinNetwork.testnet]: T;
 }
 
 export interface iPolygonParamsPerNetwork<T> {

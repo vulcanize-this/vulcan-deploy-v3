@@ -15,7 +15,7 @@
         "typechain",
         "tests",
         "markets"
-, "oracles/04_deploy_oracles.ts", "oracles/05_init_oracles.ts"     ],
+, "deploy/02_market/04_deploy_oracles.ts", "deploy/02_market/05_init_oracles.ts"     ],
      "files": ["./hardhat.config.ts"]
 
 }

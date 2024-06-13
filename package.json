@@ -72,7 +72,9 @@
     "test:local": "MARKET_NAME=Aave FORK=local npx hardhat test ./tests/__setup.spec.ts ./tests/fork/check-list.spec.ts",
     "deploy:market:aave:fork": "FORK=main MARKET_NAME=Aave npm run deploy",
     "deploy:market:molten:fork": "FORK=molten MARKET_NAME=Molten npm run deploy",
-    "deploy:market:eth:empty:fork": "FORK=main MARKET_NAME=Ethereum npm run deploy"
+    "deploy:market:eth:empty:fork": "FORK=main MARKET_NAME=Ethereum npm run deploy",
+    "deploy:market:merlin-testnet:fork": "FORK=merlin_testnet MARKET_NAME=Merlin npm run deploy",
+    "deploy:market:merlin-testnet": "MARKET_NAME=Merlin npm run deploy --network=merlin_testnet"
   },
   "peerDependencies": {
     "@aave/core-v3": "x || >=1.0.0-beta || >=3.0.0-beta",

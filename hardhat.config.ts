@@ -16,6 +16,7 @@ import {
   ePolygonNetwork,
   eMoltenNetwork,
   eBaseNetwork,
+  eMerlinNetwork,
 } from "./helpers/types";
 import { DEFAULT_NAMED_ACCOUNTS } from "./helpers/constants";
 
@@ -28,6 +29,7 @@ import "@nomiclabs/hardhat-etherscan";
 
 const SKIP_LOAD = process.env.SKIP_LOAD === "true";
 const TASK_FOLDERS = ["misc", "market-registry"];
+
 
 // Prevent to load tasks before compilation and typechain
 if (!SKIP_LOAD) {
@@ -85,10 +87,12 @@ export default {
       eArbitrumNetwork.arbitrumTestnet,
       421611
     ),
-    [eMoltenNetwork.main]: getCommonNetworkConfig(
-      eMoltenNetwork.main,
-      360
+    [eMerlinNetwork.testnet]: getCommonNetworkConfig(
+      eMerlinNetwork.testnet,
+      686868,
+      true
     ),
+    [eMoltenNetwork.main]: getCommonNetworkConfig(eMoltenNetwork.main, 360),
     [eHarmonyNetwork.main]: getCommonNetworkConfig(
       eHarmonyNetwork.main,
       1666600000

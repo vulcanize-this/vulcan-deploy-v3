@@ -1,24 +1,24 @@
-import { getChainlinkOracles } from "../helpers/market-config-helpers";
+import { getChainlinkOracles } from "../../helpers/market-config-helpers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
-import { COMMON_DEPLOY_PARAMS } from "../helpers/env";
-import { V3_CORE_VERSION, ZERO_ADDRESS } from "../helpers/constants";
+import { COMMON_DEPLOY_PARAMS } from "../../helpers/env";
+import { V3_CORE_VERSION, ZERO_ADDRESS } from "../../helpers/constants";
 import {
   FALLBACK_ORACLE_ID,
   ORACLE_ID,
   POOL_ADDRESSES_PROVIDER_ID,
-} from "../helpers/deploy-ids";
+} from "../../helpers/deploy-ids";
 import {
   loadPoolConfig,
   ConfigNames,
   getParamPerNetwork,
   checkRequiredEnvironment,
   getReserveAddresses,
-} from "../helpers/market-config-helpers";
-import { eNetwork, ICommonConfiguration, SymbolMap } from "../helpers/types";
-import { getPairsTokenAggregator } from "../helpers/init-helpers";
+} from "../../helpers/market-config-helpers";
+import { eNetwork, ICommonConfiguration, SymbolMap } from "../../helpers/types";
+import { getPairsTokenAggregator } from "../../helpers/init-helpers";
 import { parseUnits } from "ethers/lib/utils";
-import { MARKET_NAME } from "../helpers/env";
+import { MARKET_NAME } from "../../helpers/env";
 
 const func: DeployFunction = async function ({
   getNamedAccounts,
@@ -74,4 +74,4 @@ func.dependencies = ["before-deploy"];
 
 func.skip = async () => checkRequiredEnvironment();
 
-//export default func;
+export default func;
