@@ -1,13 +1,13 @@
-import { POOL_ADMIN } from "./../../helpers/constants";
-import { getProxyImplementationBySlot } from "./../../helpers/utilities/tx";
-import { getFirstSigner } from "./../../helpers/utilities/signer";
-import { eNetwork } from "./../../helpers/types";
-import { MARKET_NAME } from "./../../helpers/env";
+import { POOL_ADMIN } from "../../helpers/constants";
+import { getProxyImplementationBySlot } from "../../helpers/utilities/tx";
+import { getFirstSigner } from "../../helpers/utilities/signer";
+import { eNetwork } from "../../helpers/types";
+import { MARKET_NAME } from "../../helpers/env";
 import {
   loadPoolConfig,
   getParamPerNetwork,
   isTestnetMarket,
-} from "./../../helpers/market-config-helpers";
+} from "../../helpers/market-config-helpers";
 import { ZERO_ADDRESS } from "../../helpers/constants";
 import {
   TREASURY_CONTROLLER_ID,

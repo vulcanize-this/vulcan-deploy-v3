@@ -50,7 +50,7 @@ export const WRAPPED_NATIVE_TOKEN_PER_NETWORK: { [network: string]: string } = {
   [ePolygonNetwork.polygon]: "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
   [eMoltenNetwork.main]: "0xdBc38Db4F11b7D111477f17e757aa17dD3348a6d",
   [eMerlinNetwork.main]: "",
-  [eMerlinNetwork.testnet]: "0x8fA0a1e68cCEd45EC233C6ef6891d76716d40659"
+  [eMerlinNetwork.testnet]: "0x67A1f4A939b477A6b7c5BF94D97E45dE87E608eF"
 };
 
 export const ZERO_BYTES_32 =
@@ -82,6 +82,16 @@ export const MOCK_CHAINLINK_AGGREGATORS_PRICES: { [key: string]: string } = {
   JEUR: parseUnits("1.126", 8).toString(),
   DPI: parseUnits("149", 8).toString(),
   CBETH: parseUnits("4000", 8).toString(),
+  MBTC: parseUnits("69000", 8).toString(),
+  METH: parseUnits("4000", 8).toString(),
+  MUSDC: parseUnits("1", 8).toString(),
+  MUSDT: parseUnits("1", 8).toString(),
+  MORDI: parseUnits("60", 8).toString(),
+  MERL: parseUnits("0.4", 8).toString(),
+  ORDI: parseUnits("40", 8).toString(),
+  MSTONE: parseUnits("4000", 8).toString(),
+  POINTS: parseUnits("1", 8).toString(),
+  SOLVBTC: parseUnits("1", 8).toString(),
 };
 
 export const chainlinkAggregatorProxy: Record<string, string> = {
@@ -105,6 +115,7 @@ export const chainlinkAggregatorProxy: Record<string, string> = {
   goerli: "0x60E4B131f0F219c72b0346675283E73888e4AB24",
   [eArbitrumNetwork.goerliNitro]: "0xC09e69E79106861dF5d289dA88349f10e2dc6b5C",
   [eEthereumNetwork.sepolia]: "0x6c60d915c7a646860dba836ffcb7f112b6cfdc76",
+  [eMerlinNetwork.testnet]: "0xc654e10Ce87Af3f21982b7aa3487837E1567bC33"
 };
 
 export const chainlinkEthUsdAggregatorProxy: Record<string, string> = {
@@ -128,6 +139,7 @@ export const chainlinkEthUsdAggregatorProxy: Record<string, string> = {
   goerli: "0x60E4B131f0F219c72b0346675283E73888e4AB24",
   [eArbitrumNetwork.goerliNitro]: "0xC09e69E79106861dF5d289dA88349f10e2dc6b5C",
   [eEthereumNetwork.sepolia]: "0x6c60d915c7a646860dba836ffcb7f112b6cfdc76",
+  [eMerlinNetwork.testnet]: "0xc654e10Ce87Af3f21982b7aa3487837E1567bC33"
 };
 
 export const ETHEREUM_SHORT_EXECUTOR =
